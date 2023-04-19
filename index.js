@@ -12,10 +12,33 @@ app.set('veiws', path.join(__dirname,'views'))
 
 //POST 요청에서 req.body로 정보를 얻으려면 입력해야하는 코드
 app.use(express.urlencoded({ extended: true }))
+
 //json으로 부터 정보를 얻으려면 입력해야하는 코드
 app.use(express.json())
+
+//PATCH와 DELETE를 사용하기 위해서 필요한 모듈
 app.use(methodOverride('_method'));
 
+//Tacos DATA
+let tacos = [
+    {
+        id : uuid(),
+        meat : 'chicken',
+        qty : 1
+    },
+    {
+        id : uuid(),
+        meat : 'pulled-pork',
+        qty : 1
+    },
+    {
+        id : uuid(),
+        meat : 'roastd beef',
+        qty: 2
+    }
+]
+
+//Comments DATA
 let comments = [
     {
         id:uuid(),
@@ -43,14 +66,27 @@ app.get('/',(req,res)=>{
     res.render('home')
 })
 
-app.get('/tacos',(req,res)=>{
-    res.send('Order Received from GET response!')
+//taco index
+app.get('/tacos',(req, res)=>{
+    res.render('tacos',{tacos});
+})
+//add more taco (view)
+app.get('/tacos/order',(req,res)=>{
+    res.render('tacos/order');
 })
 
-app.post('/tacos',(req,res)=>{
-    //html파일의 input name값과 같은 이름이어야 함
-    const {tacos, qty} = req.body
-    res.send(`Here is your ${qty} ${tacos} Taco`)
+//add more taco(create)
+app.post('/tacos',(req, res)=>{
+    const{meat, qty} = req.body;
+    tacos.push({meat, qty, id:uuid()});
+    res.redirect('/tacos')   
+})
+
+//delete a taco(delete)
+app.delete('/tacos/:id',(req, res)=>{
+    const {id} = req.params;
+    tacos = tacos.filter(t=>t.id !== id);
+    res.redirect('/tacos')
 })
 
 

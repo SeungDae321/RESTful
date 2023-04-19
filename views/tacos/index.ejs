@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Tacos Orders</title>
+</head>
+<body>
+    <h1>Current Tacos orders</h1>
+    <section>
+        <ol>
+            <% for(let taco of tacos){ %>
+                <li><%= taco.meat %> * <%= taco.qty %>
+                    <form method="post" action="/tacos/<%= taco.id %>?_method=DELETE">
+                    <button>Delete</button></form>
+                </li>
+            <% } %>
+        </ol>
+    </section>
+    <section><a href="tacos/order">Order More Tacos!</a></section>
+</body>
+</html>
