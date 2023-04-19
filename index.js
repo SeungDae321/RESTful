@@ -7,8 +7,10 @@ const methodOverride = require('method-override');
 
 
 
-app.set('view engine', 'ejs')
-app.set('veiws', path.join(__dirname,'views'))
+app.set('view engine', 'ejs');
+app.set('veiws', path.join(__dirname,'views'));
+
+app.use(express.static(path.join(__dirname,'public')))
 
 //POST 요청에서 req.body로 정보를 얻으려면 입력해야하는 코드
 app.use(express.urlencoded({ extended: true }))
