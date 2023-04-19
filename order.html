@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacos Orders</title>
+</head>
+<body>
+    <h1>Taco Bell App Demo</h1>
+    <form method="get" action="http://localhost:3001/tacos">
+        <h3>GET Method</h3>
+        <label for="tacos">Enter Tacos</label>
+        <input type="text" name="tacos" id="tacos" placeholder="Enter tacos">
+        <label for="qty">How Many Tacos Do You Want?</label>
+        <input type="number" name="qty" id="qty" placeholder="how many">
+        <button>ORDER!</button>
+    </form>
+    <form method="post" action="http://localhost:3001/tacos">
+        <h3>POST Method</h3>
+        <label for="tacos">Enter Tacos</label>
+        <input type="text" name="tacos" id="tacos" placeholder="Enter tacos">
+        <label for="qty">How Many Tacos Do You Want?</label>
+        <input type="number" name="qty" id="qty" placeholder="how many">
+        <button>ORDER!</button>
+    </form>
+</body>
+</html>
